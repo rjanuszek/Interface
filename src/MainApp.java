@@ -91,12 +91,6 @@ public class MainApp {
             System.out.println(computersBattery.getBatteryLevel());
         }
 
-//        System.out.println("---LISTSORT---");
-//        Set<Laptop> computerSort = new TreeSet<>(computerName);
-//        for (Laptop computersSort : computerSort) {
-//            System.out.println(computersSort.getBatteryLevel());
-//        }
-
         System.out.println("---SORT LISTA---");
         List<Laptop> computerSort = new ArrayList<>(computerBattery);
         Collections.sort(computerSort, Comparator.comparingInt(Laptop::getBatteryLevel));
