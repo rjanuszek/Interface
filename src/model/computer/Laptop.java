@@ -1,12 +1,18 @@
 package model.computer;
 
-public class Laptop extends Computer implements Music, Video {
+import java.util.Objects;
+
+public class Laptop extends Computer implements Music, Video {//, Comparable<Laptop> {
 
     private int batteryLevel;
 
     public Laptop(String name, String type, Hdd hdd, Ram ram, int batteryLevel) {
         super(name, type, hdd, ram);
         this.batteryLevel = batteryLevel;
+    }
+
+    public int getBatteryLevel() {
+        return batteryLevel;
     }
 
     public int volumeUp() {
@@ -95,4 +101,23 @@ public class Laptop extends Computer implements Music, Video {
     public void stopVideo() {
         System.out.println("STOP VIDEO");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Laptop laptop = (Laptop) o;
+        return batteryLevel == laptop.batteryLevel;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), batteryLevel);
+    }
+
+    //    @Override
+//    public int compareTo(Laptop computer) {
+//        return this.getBatteryLevel());
+//    }
 }

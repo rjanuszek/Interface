@@ -4,6 +4,8 @@ import model.computer.PC;
 import model.computer.Hdd;
 import model.computer.Ram;
 
+import java.util.*;
+
 public class MainApp {
 
     public static void main(String[] args) {
@@ -65,10 +67,41 @@ public class MainApp {
 
 //        ZADANIE DOMOWE
 
-        BugReporter bugReporter = new BugReporter("Rafaela", "Januszek", "wp@com.pl");
-        Bug bug = new Bug("Test", bugReporter, 2);
-        System.out.println(bug);
-        bug.setBugStatus(true);
-        System.out.println(bug);
+//        BugReporter bugReporter = new BugReporter("Rafaela", "Januszek", "wp@com.pl");
+//        Bug bug = new Bug("Test", bugReporter, 2);
+//        System.out.println(bug);
+//        bug.setBugStatus(true);
+//        System.out.println(bug);
+//    }
+
+//        ĆWICZENIA Z KOLEKCJI
+
+        List<Laptop> computerList = new ArrayList<>();
+
+        computerList.add(new Laptop("Laptop1", "HP", new Hdd("HP", 50), new Ram("HP", 50), 100));
+        computerList.add(new Laptop("Laptop1", "HP", new Hdd("HP", 50), new Ram("HP", 50), 100));
+        computerList.add(new Laptop("Laptop1", "HP", new Hdd("HP", 50), new Ram("HP", 50), 55));
+        computerList.add(new Laptop("Laptop1", "HP", new Hdd("HP", 50), new Ram("HP", 50), 70));
+        computerList.add(new Laptop("Laptop2", "Dell", new Hdd("Dell", 50), new Ram("Dell", 50), 50));
+        computerList.add(new Laptop("Laptop3", "Dell", new Hdd("Dell", 50), new Ram("Dell", 50), 60));
+
+        System.out.println("---SET---");
+        Set<Laptop> computerBattery = new HashSet<>(computerList);
+        for (Laptop computersBattery : computerBattery) {
+            System.out.println(computersBattery.getBatteryLevel());
+        }
+
+//        System.out.println("---LISTSORT---");
+//        Set<Laptop> computerSort = new TreeSet<>(computerName);
+//        for (Laptop computersSort : computerSort) {
+//            System.out.println(computersSort.getBatteryLevel());
+//        }
+
+        System.out.println("---SORT LISTA---");
+        List<Laptop> computerSort = new ArrayList<>(computerBattery);
+        Collections.sort(computerSort, Comparator.comparingInt(Laptop::getBatteryLevel));
+        for (Laptop computersSort : computerSort) {
+            System.out.println(computersSort.getBatteryLevel());
+        }
     }
 }
