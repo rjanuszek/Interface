@@ -107,48 +107,47 @@ public class MainApp {
         computers.add(new Laptop("MB PRO 3", "PRO 3", new Hdd("HP", 256), new Ram("HP", 128), 100));
         computers.add(new Laptop("MB PRO 4", "PRO 4", new Hdd("HP", 500), new Ram("HP", 128), 100));
         computers.add(new PC("PC 1", "BBA", new Hdd("HP", 500), new Ram("HP", 128)));
-        computers.add(new PC("PC 2", "AAA", new Hdd("HP", 256), new Ram("HP", 256)));
+        computers.add(new PC("PC 1", "AAA", new Hdd("HP", 256), new Ram("HP", 256)));
         computers.add(new PC("PC 3", "PRO3", new Hdd("HP", 500), new Ram("HP", 128)));
 
-//        1. Zliczyć wszystkie komputery, które mają więcej niż 128 gb ramu
-        System.out.println("---Zadanie 1 ---");
-        long count = computers.stream()
-                .filter(c -> c.getRam().getSize() > 128)
-                .count();
-        System.out.println(count);
-
-//        2. Wyświetlić na konosle wszystkie typy komputerów - map
-        System.out.println("---Zadanie 2 ---");
-        computers.stream()
-                .map(Computer::getType)
-                .forEach(c -> System.out.println(c));
-
-//        3. Wyświetlić komputer, który ma najwięcej ramu
-        System.out.println("---Zadanie 3 ---");
-        Optional<Computer> maxSize = computers.stream()
-                .max(Comparator.comparingInt(c -> c.getRam().getSize()));
-        System.out.println(maxSize);
-
-//        4. Utworzyć nową kolekcję z komputerami, któe mają dysk twardy mniejszy niż 500 gb
-        System.out.println("---Zadanie 4 ---");
-        List<Computer> newCollectList = computers.stream()
-                .filter(c -> c.getHdd().getSize() < 500)
-                .collect(Collectors.toList());
-        newCollectList.stream()
-                .forEach(System.out::println);
+////        1. Zliczyć wszystkie komputery, które mają więcej niż 128 gb ramu
+//        System.out.println("---Zadanie 1 ---");
+//        long count = computers.stream()
+//                .filter(c -> c.getRam().getSize() > 128)
+//                .count();
+//        System.out.println(count);
+//
+////        2. Wyświetlić na konosle wszystkie typy komputerów - map
+//        System.out.println("---Zadanie 2 ---");
+//        computers.stream()
+//                .map(Computer::getType)
+//                .forEach(System.out::println);
+//
+////        3. Wyświetlić komputer, który ma najwięcej ramu
+//        System.out.println("---Zadanie 3 ---");
+//        Computer computer = computers.stream()
+//                .max(Comparator.comparingInt(c -> c.getRam().getSize()))
+//                .orElseThrow(() -> new IllegalStateException("Can not find any computer"));
+//        System.out.println(computer.getName());
+//
+////        4. Utworzyć nową kolekcję z komputerami, któe mają dysk twardy mniejszy niż 500 gb
+//        System.out.println("---Zadanie 4 ---");
+//        List<Computer> newCollectList = computers.stream()
+//                .filter(c -> c.getHdd().getSize() < 500)
+//                .collect(Collectors.toList());
+////        newCollectList.stream()
+////                .forEach(System.out::println);
+//        for (Computer newList : newCollectList) {
+//            System.out.println(newList.getName() + " " + newList.getHdd());
+//        }
 
 //        5. Posortować komputery po nazwie i typie
         System.out.println("---Zadanie 5 ---");
-        computers.stream()
+        List<Computer> computerList = computers.stream()
                 .sorted(Comparator.comparing(Computer::getName).thenComparing(Computer::getType))
-                .forEach(System.out::println);
-
-
-
-
-
-
-
-
+                .collect(Collectors.toList());
+        for (Computer sortedList : computerList) {
+            System.out.println(sortedList.getName() + " " + sortedList.getType());
+        }
     }
 }
